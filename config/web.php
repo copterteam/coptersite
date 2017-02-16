@@ -44,9 +44,10 @@ $config = [
             'showScriptName' => false,
 			'enableStrictParsing' => false,
             'rules' => [
-		
+			
+	     	 'blog'=>'blog/index',
 			 '<action:\w+>'=>'site/<action>',
-			 'blog'=>'blog/index',
+			 
             ],
         ],
         
