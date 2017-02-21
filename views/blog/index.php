@@ -2,7 +2,8 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Блог Copterteam';
+$this->params['breadcrumbs'][] = 'Наш блог';
 ?>
 <div class="site-index">
 
