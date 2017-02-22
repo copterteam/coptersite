@@ -68,6 +68,13 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
     ];
+	 $config['db'] = [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=u61668_copterteam',
+    'username' => 'u61668',
+    'password' => 'tip9tnxyw4',
+    'charset' => 'utf8',
+];
 }
 
 return $config;
