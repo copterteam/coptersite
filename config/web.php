@@ -2,10 +2,13 @@
 
 $params = require(__DIR__ . '/params.php');
 
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+
+
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['debug'],
 	'homeUrl' => '/',
 	'modules' => [
 	 'debug' => [
