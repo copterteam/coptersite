@@ -1,7 +1,10 @@
 <?php
 
+
+if('dev'!=YII_ENV) {
 	
-return[
+return [
+		
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=u61668_copterteam',
     'username' => 'u61668',
@@ -9,6 +12,15 @@ return[
     'charset' => 'utf8',
 ];
 
-
+}else{
 	
-
+	
+	return [
+		
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=copterteam',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8',
+];
+}
