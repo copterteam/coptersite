@@ -7,6 +7,12 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
 	'homeUrl' => '/',
+	'modules' => [
+	 'debug' => [
+     'class' => 'yii\debug\Module',
+     'allowedIPs' => ['*'],
+     ], 
+	],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
