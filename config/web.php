@@ -3,7 +3,7 @@
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
 
-//defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_DEBUG') or define('YII_DEBUG', true);
 
 
 $config = [
@@ -67,12 +67,6 @@ $config = [
     'params' => $params,
 ];
 
-if( 'dev' == YII_ENV ) {
-	
-	defined('YII_DEBUG') or define('YII_DEBUG', true);
 
-	
-	
-}
 
 return $config;
