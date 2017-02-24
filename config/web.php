@@ -3,19 +3,19 @@
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
+//defined('YII_DEBUG') or define('YII_DEBUG', true);
 
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['debug'],
+    //'bootstrap' => ['debug'],
 	'homeUrl' => '/',
 	'modules' => [
-   'debug' => [
+   /*'debug' => [
      'class' => 'yii\debug\Module',
      'allowedIPs' => ['*'],
-     ], 
+     ], */
 	],
     'components' => [
         'request' => [
@@ -67,6 +67,17 @@ $config = [
     'params' => $params,
 ];
 
+if (YII_ENV_DEV) {
+	
+	defined('YII_DEBUG') or define('YII_DEBUG', true);
 
+	
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+     'class' => 'yii\debug\Module',
+     'allowedIPs' => ['*'],
+    ];
+}
 
 return $config;
