@@ -1,7 +1,7 @@
 <?php
 
 
-if( YII_ENV == 'prod' ) {
+if( !YII_ENV_DEV ) {
 	
 return [
 		
