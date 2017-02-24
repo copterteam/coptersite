@@ -12,7 +12,7 @@ defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
 
-echo php_uname(),PHP_EOL;
+echo gethostname(),PHP_EOL;
 
 
 require(__DIR__ . '/vendor/autoload.php');
