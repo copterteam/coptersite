@@ -10,9 +10,19 @@
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 
-defined('YII_ENV') or define('YII_ENV', getenv('APPLICATION_ENV') ?: 'dev');
+$env = 'dev';
 
-echo 'Env=',YII_ENV,PHP_EOL;
+foreach ($_SERVER['argv'] as $key => $arg) {
+	if (strpos($arg,'env=')=== 0) {
+		$env = substr($arg, 4);
+		$_SERVER['argc']--;
+		unset($_SERVER['argv'][$key]);
+	}
+}
+
+echo 'Env=',$env,PHP_EOL;
+
+define('YII_ENV', $env);
 
 
 require(__DIR__ . '/vendor/autoload.php');
