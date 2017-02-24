@@ -28,6 +28,8 @@ class LoginForm extends Model
         return [
             // username and password are both required
             [['username', 'password'], 'required'],
+			 // email has to be a valid email address
+            ['username', 'email'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -35,6 +37,15 @@ class LoginForm extends Model
         ];
     }
 
+	 public function attributeLabels()
+  {
+    return [
+      'username' => Yii::t('app', 'E-mail'),
+      'password' => Yii::t('app', 'Пароль'),
+      'rememberMe' => Yii::t('app', 'Запомнить меня'),
+   
+    ];
+  }
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
