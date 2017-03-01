@@ -2,52 +2,57 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Сообщество любителей квадрокоптеров и беспилотных дронов. Реальный опыт использования мультироторных систем. | COPTERTEAM.club ';
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+<div class="main_content">
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+<div class="slide1">
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+   <h1 class="utp">Сообщество любителей<br/>коптеров и беспилотных дронов</h1>
+	 <span class="utp mini">Реальный опыт использования квадрокоптеров, гексакоптеров и других мультироторных БПЛА</span>
+<div class="blacktab">  
+	 <ul>
+     <li>Регистрация в системе позволяет:</li>
+     <li>Комментировать материалы сайта</li>
+     <li>Делать публикации в персональном блоге</li>
+     <li>Общаться с другими членами клуба</li>
+     <li>Участвовать в конкурсах на сайте</li>
 
-    <div class="body-content">
+  </ul>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+    <div class="rightcolumn">
+      <div class="beginform">
+        <form id="beginform">
+	        <input type="text" name="username" placeholder="Ваше Имя">
+		      <input type="text" name="usermail" placeholder="Ваш E-mail">
+          <button type="submit">Быстрая регистрация</button>
+	      </form>
+		 <form id="regform">
+	        <input type="text" name="actcode" placeholder="На почту отправлен код">
+		      
+			  <input id="userpass" type="password" name="userpass" placeholder="Придумайте пароль">
+			  <input type="password" name="userpass2" placeholder="Повторите пароль">
+ 			  <input type="hidden" name="usermail">
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+          <button type="submit">Начать работу!</button>
+	      </form>
+		  <div class="cover"><img src="img/loading.gif"/></div>
+      </div>
+   </div>
+  
+  
+    <div class="clearfix"></div>
+  
+ </div> 
+  
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
 </div>
+
+
+
+
+
+ </div>
