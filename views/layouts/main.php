@@ -67,13 +67,53 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; Copterteam <?= date('Y') ?></p>
+<footer>
+	  <img src="/img/scroll.png" id="scroll_top">
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+      <div class="sitemap">
+        
+		 <div id="vk_groups"></div>
+	
+		
+			<div class="maplinks">
+												
+				<div class="jet left">COPTERTEAM club<br/>
+				Россия, Санкт-Петербург<br/>
+				E-mail: info@copterteam.ru<br/>
+				URL: http://www.copterteam.ru</div><br/>
+       
+			  <a>Политика конфиденциальности</a><br/>	
+			   <a>Правила публикации на сайте</a>	
+              
+			</div>
+	  
+				  <div class="maplinks">
+				 <a href="/">Главная</a>
+				 <a href="/">Поиск</a>
+				 <a href="/">Новые записи</a>
+				 <a href="/">Статьи</a>
+				 <a href="/users/">Участники</a>
+			     <a itemprop="mainEntityOfPage" id="getlink" href="http://www.copterteam.ru<?echo($_SERVER['REQUEST_URI']);?>">Ссылка</a>
+				 
+				 <br><div class="jet">COPTERTEAM - Член экспертной группы MACS (Modern Aerial Copter Solutions). <br/>Зарегистрированный товарный знак. <br/>Все права защищены.</div>
+			   
+				 </div>
+				
+	
+	  
+	  
+      
+	  
+	  </div>
+			  	<div class="clearfix"></div>
+
+       
+			 
+      <div class="devider"></div>
+      <div class="copyright">
+ 
+      </div>
+	 </footer>
 
 <?php $this->endBody() ?>
 </body>
