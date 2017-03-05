@@ -1,8 +1,9 @@
 <?php
 
 namespace app\models;
+use yii\db\ActiveRecord;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+class User extends ActiveRecord  implements \yii\web\IdentityInterface
 {
     public $id;
     public $username;
@@ -11,23 +12,13 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public $accessToken;
 
     private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
+        
     ];
 
-
+  public static function tableName()
+  {
+    return '{{club_users}}';
+  }
     /**
      * @inheritdoc
      */
@@ -91,13 +82,25 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         return $this->authKey === $authKey;
     }
 
-	public function getPlace()
+	public function getUserPlace()
     {
     $userPlace = $this->usercity.', '.$this->countryname;
 	
 	 if( $this->city_status !== 'capital city' ) $userPlace .= ' ( '.$this->region.' )';
 		 
 	 return $userPlace;
+	 
+	}
+	public function getAvaFile()
+    {
+  
+	
+	 if( ! $this->avafile ){ $avatar_file = '/img/noavatar.png';   }else{
+		 
+		$avatar_file = '/photos/avatars/'.$this->avafile; 
+	 }
+		 
+	 return $avatar_file;
 	 
 	}
     /**

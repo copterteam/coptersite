@@ -124,7 +124,7 @@ AppAsset::register($this);
 <div class="profile_info" >
 <span>Мой профиль</span><br>
 <span class="nick light"><?= $user->usernick ?></span>
-<img id="avatar" src="<? echo($avatar_file); ?>" />
+<img id="avatar" src="<?= $user->avaFile ?>" />
 </div>
 </a>
 
