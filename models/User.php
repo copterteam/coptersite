@@ -91,6 +91,15 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         return $this->authKey === $authKey;
     }
 
+	public function getPlace()
+    {
+    $userPlace = $this->usercity.', '.$this->countryname;
+	
+	 if( $this->city_status !== 'capital city' ) $userPlace .= ' ( '.$this->region.' )';
+		 
+	 return $userPlace;
+	 
+	}
     /**
      * Validates password
      *

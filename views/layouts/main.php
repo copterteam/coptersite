@@ -4,15 +4,17 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+// use yii\bootstrap\Nav;
+// use yii\bootstrap\NavBar;
+// use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
+
 <!DOCTYPE html>
+
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
@@ -21,52 +23,119 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'Copterteam',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/index']],
-            ['label' => 'О нас', 'url' => ['/about']],
-			['label' => 'Продукты', 'url' => ['/products']],
-			['label' => 'Блог', 'url' => ['/blog']],
-            ['label' => 'Контакты', 'url' => ['/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Личный кабинет', 'url' => ['/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Выйти (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+<div id="cover"></div>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-			'homeLink' => ['label'=>'Главная','url'=>'/']
-        ]) ?>
-        <?= $content ?>
-    </div>
+<?if(Yii::$app->user->isGuest){ ?>
+
+
+<header>
+<div class="header-content" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+
+<a itemprop="url" href="http://www.copterteam.ru">
+<figure class="logo" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject" >
+<img itemprop="url" itemprop="contentUrl" src="/img/r3logo.png">
+</figure>
+<span class="logoname" itemprop="name">Copterteam<em>.club</em></span>
+</a>
+
+<div id="login_but">Вход в систему</div>
+
+<div class="search_tab">
+<form id="top_search" method="post" action="/">
+<input type="hidden" name="refer" value="<?echo($_SERVER['REQUEST_URI']);?>" />
+<input type="text" name="keywords" placeholder="Поиск..." />
+<button></button>
+</form>
 </div>
 
+
+</div>
+<div class="clearfix"></div>
+<div class="login_space">
+
+ <form id="loginform" >
+  <input class="lines" type="text" name="usermail" placeholder="E-mail" />
+  <input class="lines" type="password" name="userpass"  placeholder="Пароль" />
+  
+  <input type="hidden" name="url_string" value="<?echo($_SERVER['REQUEST_URI']);?>" />
+    <input type="hidden" name="act" value="login" />
+
+  <button type="submit">Вход в систему</button>
+  <img src="/img/loading.gif"/>
+ </form>
+ 
+ 
+ <div class="form_links">
+  <a href="/" id="remind">Забыли пароль?</a>
+  <a href="/">Регистрация</a>
+  
+   <div class="form_desc">
+    <span class="begin">Для входа в систему укажите e-mail адрес и пароль. Если Вы не помните пароль, нажмите на ссылку сверху.</span>
+	<span class="stop">Неверное сочетание электронной почты и пароля! Пожалуйста, повторите попытку или воспользуйтесь функцией сброса пароля.</span>
+	<span class="retry">Укажите в первом поле E-mail, для которого требуется восстановить пароль. На этот адрес электронной почты будет выслан новый пароль.</span>
+	<span class="404">Указанный адрес электронной почты не был зарегистрирован на сайте! Перейдите к форме регистрации по ссылке сверху.</span>
+	<span class="reset">На указанный адрес электронной почты был выслан новый пароль для сайта. Проверьте почту и используйте его для входа.</span>
+
+	</div>
+   </div>
+
+ 
+</div>
+</header>
+
+<?}else{
+	
+	$user = app\models\User::findIdentity(Yii::$app->user->id);
+	
+	?>
+
+
+<header>
+<div class="header-content"  itemprop="publisher"  itemscope itemtype="http://schema.org/Organization">
+
+<a itemprop="url" href="http://www.copterteam.ru">
+<figure class="logo" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject" >
+<img itemprop="contentUrl" itemprop="url" src="/img/r3logo.png">
+</figure>
+<span class="logoname" itemprop="name">Copterteam<em>.club</em></span>
+</a>
+
+<div class="log_info">
+<span><?= $user->username ?></span>
+<span class="light"><?= $user->usermail ?></span>
+<img id="log_out" src="/img/logout.png" title="Выйти"/>
+</div>
+
+<div class="search_tab">
+<form id="top_search" method="post" action="/">
+<input type="hidden" name="refer" value="<?echo($_SERVER['REQUEST_URI']);?>" />
+<input type="text" name="keywords" placeholder="Поиск..." />
+<button></button>
+</form>
+</div>
+
+<?if(!$user->usernick){ ?> <a href="/edit_profile" class="empty" id="user_profile">  
+<? } else {  ?>                 <a href="/users/<?= $user->usernick ?>" id="user_profile"> 
+<?}?>
+<div class="profile_info" >
+<span>Мой профиль</span><br>
+<span class="nick light"><?= $user->usernick ?></span>
+<img id="avatar" src="<? echo($avatar_file); ?>" />
+</div>
+</a>
+
+</div>
+</header>
+
+<?}?>
+
+   <?= $content ?>
+   
+   
 <footer>
 	  <img src="/img/scroll.png" id="scroll_top">
 
