@@ -97,7 +97,7 @@ class SiteController extends Controller
 		
 		}
         }
-        return $this->render('login', [
+        return $this->render('index', [
             'model' => $model,
         ]);
     }

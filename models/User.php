@@ -50,7 +50,7 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
     public static function findByUsername($username)
     {
      
-	 return self::findOne('usermail');
+	 return self::findOne(['usermail' => $username]);
 	 
         return null;
     }
@@ -108,6 +108,7 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return(  password_verify($password,$this->password) );
+	
+        return(  password_verify($password,$this->userpass) );
     }
 }
