@@ -23,7 +23,7 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
   
      public static function findIdentity($id)
     {
-        return static::findOne($id);
+        return static::findOne(['clid' => $id]);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
