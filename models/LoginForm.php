@@ -37,14 +37,15 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['userpass', 'validatePassword'],
+			[['usermail', 'userpass','act','url'], 'safe'],
         ];
     }
 
 	 public function attributeLabels()
   {
     return [
-      'username' => Yii::t('app', 'E-mail'),
-      'password' => Yii::t('app', 'Пароль'),
+      'usermail' => Yii::t('app', 'E-mail'),
+      'userpass' => Yii::t('app', 'Пароль'),
       'rememberMe' => Yii::t('app', 'Запомнить меня'),
    
     ];
@@ -61,7 +62,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
 
-            if (!$user || !$user->validatePassword($this->password)) {
+            if (!$user || !$user->validatePassword($this->userpass)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
@@ -87,7 +88,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = User::findByUsername($this->usermail);
         }
 
         return $this->_user;

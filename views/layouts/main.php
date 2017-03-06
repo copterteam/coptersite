@@ -65,10 +65,11 @@ AppAsset::register($this);
 
    
    $form = ActiveForm::begin([
+        'action' =>['/login'],
         'id' => 'loginform',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
-            'template' => "{input}",
+            'template' => "{input}<label>{error}</label>",
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>

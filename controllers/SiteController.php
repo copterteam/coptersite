@@ -11,14 +11,11 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
-	
-
-	
+		
     /**
      * @inheritdoc
      */
-	 
-
+	
 	
     public function behaviors()
     {
@@ -90,10 +87,15 @@ class SiteController extends Controller
 
         if (  $model->load(Yii::$app->request->post())  ) {
 			
+		if ( $model->act == 'login' ){ 	
 			
-			if ( $model->login() )    return $this->goBack();
+				
+			if ( $model->login() )    return $this->goHome();
 			
-			
+		}
+        if ( $model->act == 'remind' ){ 	
+		
+		}
         }
         return $this->render('login', [
             'model' => $model,

@@ -111,6 +111,6 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return(  password_verify($password,$this->password) );
     }
 }
