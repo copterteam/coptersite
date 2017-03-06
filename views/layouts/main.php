@@ -8,6 +8,9 @@ use yii\helpers\Html;
 // use yii\bootstrap\NavBar;
 // use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\bootstrap\ActiveForm;
+use app\models\LoginForm;
+
 
 AppAsset::register($this);
 ?>
@@ -57,17 +60,34 @@ AppAsset::register($this);
 <div class="clearfix"></div>
 <div class="login_space">
 
- <form id="loginform" >
-  <input class="lines" type="text" name="usermail" placeholder="E-mail" />
-  <input class="lines" type="password" name="userpass"  placeholder="Пароль" />
-  
-  <input type="hidden" name="url_string" value="<?echo($_SERVER['REQUEST_URI']);?>" />
-    <input type="hidden" name="act" value="login" />
+   <?php 
+   $model = new LoginForm();
 
-  <button type="submit">Вход в систему</button>
-  <img src="/img/loading.gif"/>
- </form>
- 
+   
+   $form = ActiveForm::begin([
+        'id' => 'loginform',
+        'options' => ['class' => 'form-horizontal'],
+        'fieldConfig' => [
+            'template' => "{input}",
+            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+        ],
+    ]); ?>
+
+        <?= $form->field($model, 'usermail')->textInput(['autofocus' => false,'placeholder'=>'E-mail','class'=>'lines'])->label(false) ?>
+
+        <?= $form->field($model, 'userpass')->passwordInput(['autofocus' => false,'placeholder'=>'Пароль','class'=>'lines'])->label(false) ?>
+
+		<?= $form->field($model, 'url_string')->hiddenInput(['value'=> $_SERVER['REQUEST_URI']])->label(false) ?>
+
+		<?= $form->field($model, 'act')->hiddenInput(['value'=> 'login'])->label(false) ?>		
+				
+        <?= Html::submitButton('Вход в систему', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+
+
+    <?php ActiveForm::end(); ?>
+	
+
+
  
  <div class="form_links">
   <a href="/" id="remind">Забыли пароль?</a>
