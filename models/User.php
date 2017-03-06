@@ -5,15 +5,10 @@ use yii\db\ActiveRecord;
 
 class User extends ActiveRecord  implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
+
     public $authKey;
     public $accessToken;
 
-    private static $users = [
-        
-    ];
 
   public static function tableName()
   {
