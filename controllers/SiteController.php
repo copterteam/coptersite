@@ -35,7 +35,6 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
 				    'login' => ['post'],
-                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -109,9 +108,14 @@ class SiteController extends Controller
      */
     public function actionLogout()
     {
-        Yii::$app->user->logout();
+        if(!Yii::$app->user->isGuest){
+			
+			Yii::$app->user->logout();
 
         return $this->goBack();
+		}
+		
+	return $this->goHome();	
     }
 
     /**
