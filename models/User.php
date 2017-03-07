@@ -1,7 +1,9 @@
 <?php
 
 namespace app\models;
+
 use yii\db\ActiveRecord;
+use Yii;
 
 class User extends ActiveRecord  implements \yii\web\IdentityInterface
 {
@@ -151,6 +153,13 @@ private function generate_password($number)
 	    $inspass = password_hash($newpass,PASSWORD_BCRYPT);
     
 	    $this->userpass = $inspass;
+		
+		 Yii::$app->mailer->compose('remind', ['password' => $newpass])
+        ->setTo($this->usermail)
+        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->params['supportName']])
+        ->setSubject('Сброс пароля для входа в клуб ' . Yii::$app->name)
+        ->send();
+		
 		
         return(  $this->save(false) );
 		

@@ -8,6 +8,7 @@ $db = require(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic',
+	'name' =>'COPTERTEAM',
     'basePath' => dirname(__DIR__),
     //'bootstrap' => ['debug'],
 	'homeUrl' => '/',

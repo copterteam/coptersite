@@ -6,16 +6,21 @@ use yii\helpers\Html;
 /* @var $content string main view render result */
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=<?= Yii::$app->charset ?>" />
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta charset='utf-8' />
+<link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+
 </head>
-<body>
+
+<body style='margin:0;padding:0;'>
+
     <?php $this->beginBody() ?>
-    <?= $content ?>
+    
+	<?= $content ?>
+	
     <?php $this->endBody() ?>
 </body>
 </html>
