@@ -48,7 +48,7 @@ $(document).ready(function(){
 		$('header .login_space').animate({'height':'0px'},500,function(){
 		
         $('header .login_space form#loginform input.lines').prop('disabled',false).val(''); 
-        $('header .login_space form#loginform input[name="act"]').val('login');		
+        $('header .login_space form#loginform input#loginform-act').val('login');		
 		$('header .login_space form#loginform button').text('Вход в систему');
 		$('header .login_space div.form_links .form_desc span').hide();
 		
@@ -70,7 +70,7 @@ $('header .login_space div.form_links a#remind').click(function(evt){
 	 $('header .login_space form#loginform button').text('Сбросить пароль');
 	 $('header .login_space div.form_links .form_desc span').hide();
 	 $('header .login_space div.form_links .form_desc').css({'color':'rgb(139,139,159)'}).find('span.retry').fadeIn(300);
-	 $('header .login_space form#loginform input[name="act"]').val('remind');
+	 $('header .login_space form#loginform input#loginform-act').val('remind');
 	
 
 });

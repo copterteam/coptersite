@@ -28,6 +28,7 @@ class LoginForm extends Model
     public function scenarios()
     {
         return [
+		    'default' => ['usermail', 'userpass','rememberMe','act','url','_user'],
             self::SCENARIO_LOGIN => ['usermail', 'userpass','rememberMe','act','url','_user'],
             self::SCENARIO_REMIND => ['usermail','rememberMe','act','url','_user'],
         ];
@@ -47,6 +48,7 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['userpass', 'validatePassword', 'on' => self::SCENARIO_LOGIN],
+			[['usermail', 'userpass','act','url'],'safe'],
         ];
     }
 
@@ -98,8 +100,7 @@ class LoginForm extends Model
 			
 		$user = $this->getUser();
 		
-		var_dump($user);
-           if( $user ) return  ( $user-> resetPassword() );
+		 if( $user ) return  ( $user-> resetPassword() );
 			
         }
         return false;

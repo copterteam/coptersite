@@ -101,7 +101,10 @@ class SiteController extends Controller
 
 		 
 		}
+		var_dump($model);
         }
+		
+		
         return $this->render('index');
     }
 
