@@ -88,14 +88,14 @@ class SiteController extends Controller
 			
 		if ( $model->act == 'login' ){ 	
 			
-			$model->scenario = User::SCENARIO_LOGIN;
+			$model->scenario = LoginForm::SCENARIO_LOGIN;
 			
 			if ( $model->login() )    return $this->goBack();
 			
 		}
         if ( $model->act == 'remind' ){ 	
 		
-		 		$model->scenario = User::SCENARIO_REMIND;
+		 		$model->scenario = LoginForm::SCENARIO_REMIND;
 
 				if ( $model->remind() )    return $this->goBack();
 
