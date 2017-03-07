@@ -128,7 +128,7 @@ AppAsset::register($this);
 <div class="log_info">
 <span><?= $user->username ?></span>
 <span class="light"><?= $user->usermail ?></span>
-<img id="log_out" src="/img/logout.png" title="Выйти"/>
+<a href="/logout"><img id="log_out" src="/img/logout.png" title="Выйти"/></a>
 </div>
 
 <div class="search_tab">

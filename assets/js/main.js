@@ -195,7 +195,7 @@ $('header .login_space div.form_links a#remind').click(function(evt){
 
 	});
 	
-		 $('header .header-content .log_info img#log_out').click(function(){
+		/* $('header .header-content .log_info img#log_out').click(function(){
 			 
 		 var logdata= {	 act:"logout"	 };	
 		 
@@ -207,7 +207,7 @@ $('header .login_space div.form_links a#remind').click(function(evt){
 			 
 				  }});
 			 
-		 });	
+		 });	*/
 
        $('header .header-content div#login_but').click( toggleLogin );
 			
