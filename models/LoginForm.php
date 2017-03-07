@@ -25,6 +25,7 @@ class LoginForm extends Model
 	const SCENARIO_REMIND = 'remind';
     const SCENARIO_REGISTER = 'register';
 
+	
     public function scenarios()
     {
         return [
@@ -40,7 +41,9 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['usermail', 'userpass'], 'required', 'on' => self::SCENARIO_LOGIN],
+			[['usermail', 'userpass'], 'required', 'on' => 'default' ],
+            [['usermail', 'userpass'], 'required', 'on' => self::SCENARIO_LOGIN ],
+			
 			[['usermail'], 'required', 'on' => self::SCENARIO_REMIND],
 			 // email has to be a valid email address
             ['usermail', 'email'],
