@@ -101,7 +101,6 @@ class SiteController extends Controller
 
 		 
 		}
-		var_dump($model);
         }
 		
 		
