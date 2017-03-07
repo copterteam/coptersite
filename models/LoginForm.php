@@ -19,10 +19,19 @@ class LoginForm extends Model
 	public $act;
 		
     public $rememberMe = true;
-
     private $_user = false;
 
+    const SCENARIO_LOGIN = 'login';    
+	const SCENARIO_REMIND = 'remind';
+    const SCENARIO_REGISTER = 'register';
 
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_LOGIN => ['usermail', 'userpass','rememberMe','act','url'],
+            self::SCENARIO_REGISTER => ['usermail','act','url'],
+        ];
+    }
     /**
      * @return array the validation rules.
      */
@@ -30,14 +39,14 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['usermail', 'userpass'], 'required'],
+            [['usermail', 'userpass'], 'required', 'on' => self::SCENARIO_LOGIN],
+			[['usermail'], 'required', 'on' => self::SCENARIO_REMIND],
 			 // email has to be a valid email address
             ['usermail', 'email'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
-            ['userpass', 'validatePassword'],
-			[['usermail', 'userpass','act','url'], 'safe'],
+            ['userpass', 'validatePassword', 'on' => self::SCENARIO_LOGIN],
         ];
     }
 
@@ -78,11 +87,24 @@ class LoginForm extends Model
 			
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
 			
-			var_dump( app\models\User::findIdentity(Yii::$app->user->id) ); 
         }
         return false;
     }
 
+	
+	    public function remind()
+    {
+        if ($this->validate()) {
+			
+		$user = $this->getUser();
+		
+		var_dump($user);
+           if( $user ) return  ( $user-> resetPassword() );
+			
+        }
+        return false;
+    }
+	
     /**
      * Finds user by [[username]]
      *

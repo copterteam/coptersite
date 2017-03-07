@@ -465,7 +465,7 @@ header .login_space{
   padding:0;
   height:0px;
   overflow:hidden;
-  font-size:14px;
+  font-size:0px;
 }
 
 header .login_space form#loginform{
@@ -474,6 +474,7 @@ header .login_space form#loginform{
 	margin-right:2%;
 	width:23%;
 	margin-top:20px;	
+	
 }
 header .login_space form#loginform img{
 	
@@ -523,8 +524,7 @@ header .login_space form#loginform button{
 	cursor:pointer;
 }
 
-
-header .login_space form#loginform  input.error{
+ header .login_space form#loginform div.has-error input{
 	 
    background-image: url('../img/warning.png'); 
    background-size:20px 20px;
@@ -532,10 +532,11 @@ header .login_space form#loginform  input.error{
    background-repeat:no-repeat;
 	 
  }
- 
- 
-header .login_space form#loginform  label.error{ position:absolute; font-size:0; }
- 
+  
+ header .login_space form#loginform  label.error{ position:absolute; font-size:0px; color:red; }
+
+	  
+	  
  header .login_space div.form_links{
 	position:relative;
 	float:right;

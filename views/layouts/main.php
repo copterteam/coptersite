@@ -69,7 +69,7 @@ AppAsset::register($this);
         'id' => 'loginform',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
-            'template' => "{input}<label>{error}</label>",
+            'template' => '{input}<label class="error">{error}</label>',
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>

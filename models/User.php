@@ -93,6 +93,24 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return(  password_verify($password,$this->userpass) );
+        return( ( $this->active == 1)? password_verify($password,$this->userpass) : false );
+    }
+	
+	    public function resetPassword()
+    {
+		if( $this->active == 1){ 
+		
+		$newpass = generate_password(6);
+     
+	    $inspass = password_hash($newpass,PASSWORD_BCRYPT);
+    
+	    $this->userpass = $inspass;
+		
+        return(  $this->save(false) );
+		
+		}else{
+			
+		return(  false );	
+		}
     }
 }

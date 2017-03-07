@@ -20,7 +20,7 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+            /*'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout'],
                 'rules' => [
@@ -30,7 +30,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
-            ],
+            ],*/
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -88,17 +88,21 @@ class SiteController extends Controller
 			
 		if ( $model->act == 'login' ){ 	
 			
-				
-			if ( $model->login() )    return $this->goHome();
+			$model->scenario = User::SCENARIO_LOGIN;
+			
+			if ( $model->login() )    return $this->goBack();
 			
 		}
         if ( $model->act == 'remind' ){ 	
 		
+		 		$model->scenario = User::SCENARIO_REMIND;
+
+				if ( $model->remind() )    return $this->goBack();
+
+		 
 		}
         }
-        return $this->render('index', [
-            'model' => $model,
-        ]);
+        return $this->render('index');
     }
 
     /**
