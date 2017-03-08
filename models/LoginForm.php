@@ -29,7 +29,6 @@ class LoginForm extends Model
     public function scenarios()
     {
         return [
-		    'default' => ['usermail', 'userpass','rememberMe','act','url','_user'],
             self::SCENARIO_LOGIN => ['usermail', 'userpass','rememberMe','act','url','_user'],
             self::SCENARIO_REMIND => ['usermail','rememberMe','act','url','_user'],
         ];

@@ -61,7 +61,7 @@ AppAsset::register($this);
 <div class="login_space">
 
    <?php 
-   $model = new LoginForm();
+   $model = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
 
    
    $form = ActiveForm::begin([
