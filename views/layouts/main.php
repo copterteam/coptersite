@@ -9,7 +9,7 @@ use yii\helpers\Html;
 // use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\bootstrap\ActiveForm;
-use app\models\LoginForm;
+
 
 
 AppAsset::register($this);
@@ -61,8 +61,10 @@ AppAsset::register($this);
 <div class="login_space">
 
    <?php 
-   $model = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
+   if( Yii::$app->controller->action->id != 'login'){   
 
+   
+   $model =  Yii::$app->controller->loginForm;
    
    $form = ActiveForm::begin([
         'action' =>['/login'],
@@ -88,7 +90,7 @@ AppAsset::register($this);
     <?php ActiveForm::end(); ?>
 	
 
-
+   <?}?>
  
  <div class="form_links">
   <a href="/" id="remind">Забыли пароль?</a>

@@ -50,7 +50,7 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['userpass', 'validatePassword', 'on' => self::SCENARIO_LOGIN],
-			[['usermail', 'userpass','act','url'],'safe'],
+			[['usermail', 'userpass','act','url','rememberMe'],'safe'],
         ];
     }
 

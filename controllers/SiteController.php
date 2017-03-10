@@ -16,6 +16,8 @@ class SiteController extends Controller
      * @inheritdoc
      */
 	
+	public $loginForm;
+	
 	
     public function behaviors()
     {
@@ -34,7 +36,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-				    'login' => ['post'],
+				    //'login' => ['post'],
                 ],
             ],
         ];
@@ -56,7 +58,13 @@ class SiteController extends Controller
         ];
     }
 
-	
+	public function beforeAction($action)
+	{
+		
+	if(Yii::$app->user->isGuest)	$this->loginForm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
+		
+     return parent::beforeAction($action);	
+	}
 
  
  
@@ -82,29 +90,35 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
 
-        if (  $model->load(Yii::$app->request->post())  ) {
+        if ( $model->load(Yii::$app->request->post())  ) {
 			
 		if ( $model->act == 'login' ){ 	
 			
 			$model->scenario = LoginForm::SCENARIO_LOGIN;
 			
 			if ( $model->login() )    return $this->goBack();
-			
+						
 		}
         if ( $model->act == 'remind' ){ 	
 		
 		 		$model->scenario = LoginForm::SCENARIO_REMIND;
 
-				if ( $model->remind() )    return $this->goBack();
+				if ( $model->remind() )    	
+
+					return $this->render('login', [
+            'model' => $model,
+        ]);
 
 		 
 		}
+		
         }
 		
-		
-        return $this->render('index');
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -124,31 +138,5 @@ class SiteController extends Controller
 	return $this->goHome();	
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
 
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
 }
