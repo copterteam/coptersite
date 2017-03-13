@@ -7,13 +7,13 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Вход для зарегистрированных пользователей | '.Yii::$app->name;
+$this->title = 'Регистрация новых пользователей | '.Yii::$app->name;
 ?>
 
 <div class="main_content">
 
 <div class="site-login">
-    <h1>Вход в систему</h1>
+    <h1>Регистрация</h1>
 
     <p>Необходимо указать e-mail и пароль:</p>
 

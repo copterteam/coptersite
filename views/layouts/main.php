@@ -45,7 +45,7 @@ AppAsset::register($this);
 <span class="logoname" itemprop="name">Copterteam<em>.club</em></span>
 </a>
 
-<div id="login_but">Вход в систему</div>
+<div id="login_but" data-from="<?echo($_SERVER['REQUEST_URI']);?>" >Вход в систему</div>
 
 <div class="search_tab">
 <form id="top_search" method="post" action="/">
