@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace app\controllers;
 
@@ -140,15 +140,18 @@ class SiteController extends Controller
 			
 			 if ( $model->validate() ){
 				 
-				  $model->scenario = RegForm::SCENARIO_REGISTR;
+				  
 
 			 $user = User::findByUsername($model->usermail) ? 	User::findByUsername($model->usermail) : User::createUser($model->usermail);  
 						
-             $model->mailcode = $user->codeActivate();
-			 
+                         $model->mailcode = $user->codeActivate();
+
+                         		 
 			 $result =  $model->mailcode ? 'Код активации отправлен на электронную почту' : 'Пользователь с таким адресом e-mail уже зарегистрирован!' ;
 			 
 			 Yii::$app->session->setFlash('begin',$result);
+                           
+                         if($model->mailcode) $model->scenario = RegForm::SCENARIO_REGISTR;
 
 			    }		
 		     } 
