@@ -66,6 +66,29 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
         return $this->authKey === $authKey;
     }
 
+	
+	    public static function createUser($usermail)
+    {
+		$user = new self;
+		
+		$user->usermail = $usermail;
+		
+		if( $user->save(false) )  return $user ;
+    }
+		public function signUp($username,$userpass)
+    {
+		
+		 $this->username  = $username;
+		 $this->userpass = password_hash($userpass,PASSWORD_BCRYPT);
+		 $this->regdate = date("Y-m-d H:i:s",time());
+		 $this->active = 1;
+		 $this->save(false);
+		 
+		return Yii::$app->user->login($this,0);
+
+	}
+	
+	
 	public function getUserPlace()
     {
     $userPlace = $this->usercity.', '.$this->countryname;
@@ -93,12 +116,12 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
      * @param string $password password to validate
      * @return boolean if password provided is valid for current user
      */
+	 
     public function validatePassword($password)
     {
-        return( ( $this->active == 1)? password_verify($password,$this->userpass) : false );
+        return( ( $this->active )? password_verify($password,$this->userpass) : false );
     }
-	
-	
+		
 	
 
 private function generate_password($number)
@@ -106,25 +129,15 @@ private function generate_password($number)
   {
 
     $arr = array('a','b','c','d','e','f',
-
                  'g','h','i','j','k','l',
-
                  'm','n','o','p','r','s',
-
                  't','u','v','x','y','z',
-
                  'A','B','C','D','E','F',
-
                  'G','H','I','J','K','L',
-
                  'M','N','O','P','R','S',
-
                  'T','U','V','X','Y','Z',
-
                  '1','2','3','4','5','6',
-
                  '7','8','9','0');
-
     
     $pass = "";
 
@@ -150,9 +163,7 @@ private function generate_password($number)
 		
 		$newpass = $this->generate_password(6);
      
-	    $inspass = password_hash($newpass,PASSWORD_BCRYPT);
-    
-	    $this->userpass = $inspass;
+	    $this->userpass = password_hash($newpass,PASSWORD_BCRYPT);
 		
 		 Yii::$app->mailer->compose('remind', ['password' => $newpass])
         ->setTo($this->usermail)
@@ -168,4 +179,28 @@ private function generate_password($number)
 		return(  false );	
 		}
     }
+	
+		    public function codeActivate()
+    {
+		if( $this->active == 0){ 
+		
+		$actcode = substr(md5(time()),-6);
+        
+	    $this->actcode = $actcode;
+		
+		 Yii::$app->mailer->compose('actcode', ['actcode' => $actcode])
+        ->setTo($this->usermail)
+        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->params['supportName']])
+        ->setSubject('Завершение регистрации в клубe ' . Yii::$app->name)
+        ->send();
+		
+		
+        if( $this->save(false) ) return(  $this->actcode );
+		
+		}else{
+			
+		return(  false );	
+		}
+    }
+	
 }

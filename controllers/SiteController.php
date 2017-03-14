@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\RegForm;
+use app\models\User;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -141,15 +142,26 @@ class SiteController extends Controller
 				 
 				  $model->scenario = RegForm::SCENARIO_REGISTR;
 
-             $model->mailcode = '123';
+			 $user = User::findByUsername($model->usermail) ? 	User::findByUsername($model->usermail) : User::createUser($model->usermail);  
+						
+             $model->mailcode = $user->codeActivate();
 			 
-			
+			 $result =  $model->mailcode ? 'Код активации отправлен на электронную почту' : 'Пользователь с таким адресом e-mail уже зарегистрирован!' ;
+			 
+			 Yii::$app->session->setFlash('begin',$result);
+
 			    }		
 		     } 
 			 if ( $model->act == RegForm::SCENARIO_REGISTR ){ 	
 			
+			 if ( $model->validate() ){
 			 
-			 return $this->goHome();	
+			 $user = User::findByUsername($model->usermail);
+			 
+			 if( $user->signUp($model->username,$model->userpass)  ) return $this->goHome();
+			 
+			 	
+			 }
 			 }
 				 
 			 }
