@@ -26,8 +26,8 @@ $this->title = 'Вход для зарегистрированных польз�
 
     <?php endif; ?>
 	
-    <?php $form = ActiveForm::begin([
-        'id' => 'loginform',
+    <?php $form2 = ActiveForm::begin([
+        'id' => 'login-form',
         'options' => [
 		'class' => 'form-horizontal',
 		],
@@ -37,15 +37,15 @@ $this->title = 'Вход для зарегистрированных польз�
         ],
     ]); ?>
 
-        <?= $form->field($model, 'usermail')->textInput(['autofocus' => false,'placeholder'=>'E-mail','class'=>'lines'])->label(false) ?>
+        <?= $form2->field($model, 'usermail')->textInput(['autofocus' => false,'placeholder'=>'E-mail','class'=>'lines'])->label(false) ?>
 
-        <?= $form->field($model, 'userpass')->passwordInput(['autofocus' => false,'placeholder'=>'Пароль','class'=>'lines'])->label(false) ?>
+        <?= $form2->field($model, 'userpass')->passwordInput(['autofocus' => false,'placeholder'=>'Пароль','class'=>'lines'])->label(false) ?>
 
-	    <?= $form->field($model, 'url_string')->hiddenInput(['value'=> $_SERVER['REQUEST_URI']])->label(false) ?>
+	    <?= $form2->field($model, 'url_string')->hiddenInput(['value'=> $_SERVER['REQUEST_URI']])->label(false) ?>
 
-		<?= $form->field($model, 'act')->hiddenInput(['value'=> 'login'])->label(false) ?>		
+		<?= $form2->field($model, 'act')->hiddenInput(['value'=> 'login'])->label(false) ?>		
 		
-        <?= $form->field($model, 'rememberMe')->checkbox([
+        <?= $form2->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
 

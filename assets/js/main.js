@@ -31,7 +31,7 @@ $(document).ready(function(){
 		
 		var self=this;
 		
-		if( ( $('header .login_space').css('height')=='0px' )  &&  ( $(self).data('from')!='/login' ) ){ 
+		if(  $('header .login_space').css('height')=='0px'  ){ 
 		
 		
 		$('header .login_space').animate({'height':'200px'},500,function(){

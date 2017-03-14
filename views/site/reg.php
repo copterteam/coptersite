@@ -26,8 +26,8 @@ $this->title = 'Регистрация новых пользователей | '
 
     <?php endif; ?>
 	
-    <?php $form = ActiveForm::begin([
-        'id' => 'loginform',
+    <?php $form2 = ActiveForm::begin([
+        'id' => 'regform',
         'options' => [
 		'class' => 'form-horizontal',
 		],
@@ -36,19 +36,33 @@ $this->title = 'Регистрация новых пользователей | '
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
+        <?= $form2->field($model, 'url_string')->hiddenInput(['value'=> $_SERVER['REQUEST_URI']])->label(false) ?>
 
-        <?= $form->field($model, 'usermail')->textInput(['autofocus' => false,'placeholder'=>'E-mail','class'=>'lines'])->label(false) ?>
+		<?if($model->scenario == 'begin'){?>
+        
+		<?= $form2->field($model, 'username')->textInput(['autofocus' => false,'placeholder'=>'Ваше имя','class'=>'lines'])->label(false) ?>
+		<?= $form2->field($model, 'usermail')->textInput(['autofocus' => false,'placeholder'=>'E-mail','class'=>'lines'])->label(false) ?>
 
-        <?= $form->field($model, 'userpass')->passwordInput(['autofocus' => false,'placeholder'=>'Пароль','class'=>'lines'])->label(false) ?>
 
-	    <?= $form->field($model, 'url_string')->hiddenInput(['value'=> $_SERVER['REQUEST_URI']])->label(false) ?>
 
-		<?= $form->field($model, 'act')->hiddenInput(['value'=> 'login'])->label(false) ?>		
+		<?= $form2->field($model, 'act')->hiddenInput(['value'=> 'begin'])->label(false) ?>		
 		
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+		<? } if($model->scenario == 'registr'){ ?>
+		
+    	<?= $form2->field($model, 'username')->textInput(['autofocus' => false,'readonly'=>true,'placeholder'=>'Ваше имя','class'=>'lines'])->label(false) ?>
+		<?= $form2->field($model, 'usermail')->textInput(['autofocus' => false,'readonly'=>true,'placeholder'=>'E-mail','class'=>'lines'])->label(false) ?>
 
+		<?= $form2->field($model, 'actcode')->textInput(['autofocus' => true,'placeholder'=>'Код активации','class'=>'lines'])->label(false) ?>
+
+        <?= $form2->field($model, 'userpass')->passwordInput(['autofocus' => false,'placeholder'=>'Пароль','class'=>'lines'])->label(false) ?>
+
+        <?= $form2->field($model, 'userpass2')->passwordInput(['autofocus' => false,'placeholder'=>'Пароль еще раз','class'=>'lines'])->label(false) ?>
+
+		<?= $form2->field($model, 'act')->hiddenInput(['value'=> 'registr'])->label(false) ?>		
+				<?= $form2->field($model, 'mailcode')->hiddenInput()->label(false) ?>		
+
+	
+		<?}?>
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('Войти в систему', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>

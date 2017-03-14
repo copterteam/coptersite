@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\RegForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -123,6 +124,41 @@ class SiteController extends Controller
         ]);
     }
 
+	   public function actionReg()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+		
+		 $model = new RegForm(['scenario' => RegForm::SCENARIO_BEGIN]);
+		 
+		     if ( $model->load(Yii::$app->request->post())  ) {
+				 
+			if ( $model->act == RegForm::SCENARIO_BEGIN ){ 	
+					
+			
+			 if ( $model->validate() ){
+				 
+				  $model->scenario = RegForm::SCENARIO_REGISTR;
+
+             $model->mailcode = '123';
+			 
+			
+			    }		
+		     } 
+			 if ( $model->act == RegForm::SCENARIO_REGISTR ){ 	
+			
+			 
+			 return $this->goHome();	
+			 }
+				 
+			 }
+			 
+			 
+		return $this->render('reg', [
+                        'model' => $model,
+                        ]);
+	}
     /**
      * Logout action.
      *

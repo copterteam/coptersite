@@ -61,8 +61,6 @@ AppAsset::register($this);
 <div class="login_space">
 
    <?php 
-   if( Yii::$app->controller->action->id != 'login'){   
-
    
    $model =  Yii::$app->controller->loginForm;
    
@@ -90,11 +88,10 @@ AppAsset::register($this);
     <?php ActiveForm::end(); ?>
 	
 
-   <?}?>
  
  <div class="form_links">
   <a href="/" id="remind">Забыли пароль?</a>
-  <a href="/">Регистрация</a>
+  <a href="/reg">Регистрация</a>
   
    <div class="form_desc">
     <span class="begin">Для входа в систему укажите e-mail адрес и пароль. Если Вы не помните пароль, нажмите на ссылку сверху.</span>
