@@ -136,7 +136,7 @@ text-align:left;
    background-repeat:no-repeat;
  }
  
-.slide1 .blacktab .rightcolumn .beginform input.error,.slide1 .rightcolumn .beginform select.error{
+.slide1 .blacktab .rightcolumn .beginform div.has-error input{
 	 
    background-image: url('../img/warning.png'); 
    background-size:20px 20px;

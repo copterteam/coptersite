@@ -71,6 +71,10 @@ $config = [
 			 
             ],
         ],
+		'assetManager' => [
+          
+		  'linkAssets' => false,
+      ]
         
     ],
     'params' => $params,

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace app\controllers;
 
@@ -77,8 +77,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+		  if (!Yii::$app->user->isGuest) {
+
+           return $this->render('index');
+
+		  }else{
+
+
+		  $model = new RegForm(['scenario' => RegForm::SCENARIO_BEGIN]);
+
+          return $this->render('index', [
+            'model' => $model,
+          ]);
 		
-        return $this->render('index');
+		  }
     }
 
     /**
