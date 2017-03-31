@@ -66,7 +66,7 @@ $(document).ready(function(){
 	
 $('header .login_space div.form_links a#remind').click(function(evt){
 	 evt.preventDefault();
-	 $('header .login_space form#loginform input[type="password"]').val('').prop('disabled',true);
+	 $('header .login_space form#loginform input[type="password"]').val('').prop('disabled',true).parent('div').removeClass('has-error');
 	 $('header .login_space form#loginform button').text('Сбросить пароль');
 	 $('header .login_space div.form_links .form_desc span').hide();
 	 $('header .login_space div.form_links .form_desc').css({'color':'rgb(139,139,159)'}).find('span.retry').fadeIn(300);

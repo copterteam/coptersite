@@ -12,15 +12,16 @@ $this->title = 'Регистрация новых пользователей | '
 
 <div class="main_content">
 
-<div class="site-login">
+<div class="reg_space">
+
     <h1>Регистрация</h1>
 
     <p>Необходимо указать e-mail и пароль:</p>
 
-	<?php if (Yii::$app->session->hasFlash('remind')): ?>
+	<?php if (Yii::$app->session->hasFlash('begin')): ?>
 	  
 	    <div class="alert alert-success">
-            Новый пароль выслан на электронную почту
+           <?= Yii::$app->session->getFlash('begin') ?>
         </div>
 		
 
@@ -62,10 +63,11 @@ $this->title = 'Регистрация новых пользователей | '
 				<?= $form2->field($model, 'mailcode')->hiddenInput()->label(false) ?>		
 
 	
+	
 		<?}?>
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Войти в систему', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             </div>
         </div>
 

@@ -53,7 +53,7 @@ $this->title = 'Сообщество любителей квадрокоптер
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('Быстрая регистрация', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
+            </div> 
         </div>
 
     <?php ActiveForm::end(); ?>
