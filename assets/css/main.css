@@ -613,7 +613,7 @@ header .login_space form#loginform button{
 }
 		
 	
-.main_content .reg_space{
+.main_content .reg_space, .main_content .login_space{
 	
   position:relative;
   width:100%;
@@ -626,7 +626,7 @@ header .login_space form#loginform button{
 
 }
 
-.main_content .reg_space form#regform{
+.main_content .reg_space form#regform, .main_content .login_space form#login-form{
 	position:relative;
 	margin-right:2%;
 	width:23%;
@@ -644,7 +644,7 @@ header .login_space form#loginform button{
 	display:none;
 }
 
-.main_content .reg_space form#regform input{
+.main_content .reg_space form#regform input, .main_content .login_space form#login-form input{
 	
     box-sizing:border-box;
     width:100%;
@@ -661,7 +661,7 @@ header .login_space form#loginform button{
 	float:right;	
 }
 
-.main_content .reg_space form#regform button{
+.main_content .reg_space form#regform button, .main_content .login_space form#login-form button{
     box-sizing:border-box;
     width:100%;
     font-family:'Ubuntu',NotoSans,sans-serif;
@@ -681,7 +681,7 @@ header .login_space form#loginform button{
 	cursor:pointer;
 }
 
-.main_content .reg_space form#regform div.has-error input{
+.main_content .reg_space form#regform div.has-error input, .main_content .login_space form#login-form  div.has-error input{
 	 
    background-image: url('../img/warning.png'); 
    background-size:20px 20px;

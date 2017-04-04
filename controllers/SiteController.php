@@ -121,11 +121,9 @@ class SiteController extends Controller
 
 				if ( $model->remind() ) {   	
                 
+				$model->scenario = LoginForm::SCENARIO_LOGIN;
+				
 				Yii::$app->session->setFlash('remind','Новый пароль выслан на почту');
-
-				return $this->render('login', [
-                        'model' => $model,
-                        ]);
 
 				}
 		}

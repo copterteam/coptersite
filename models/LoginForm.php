@@ -42,7 +42,6 @@ class LoginForm extends Model
             // username and password are both required
 			[['usermail', 'userpass'], 'required', 'on' => 'default' ],
             [['usermail', 'userpass'], 'required', 'on' => self::SCENARIO_LOGIN ],
-			
 			[['usermail'], 'required', 'on' => self::SCENARIO_REMIND],
 			 // email has to be a valid email address
             ['usermail', 'email'],
